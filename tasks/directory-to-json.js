@@ -24,10 +24,13 @@ module.exports = function(grunt) {
 
       fileGroup.src.forEach(function(file){
         grunt.log.writeln('Processing File "' + file + '".');
-        var fileStructure = {};
+        var fileStructure = {},
+            filestats = fs.statSync(file);
         fileStructure.path = rootDirectory + file;
         fileStructure.title = getTitle(file);
         fileStructure.is_file = grunt.file.isFile(file);
+        fileStructure.modified = filestats.mtime;
+        
         directoryStructure.files.push(fileStructure);
       });
 
@@ -51,7 +54,7 @@ module.exports = function(grunt) {
     if (type == '.html')
     {
       title = fileContents.match(/<title>(.*)<\/title>/i);
-      if (title == null)
+      if (title === null)
       {
         //Perhaps it is a swig template masquarading as an .html
         type = '.swig';  
@@ -62,7 +65,7 @@ module.exports = function(grunt) {
     {
       title = fileContents.match(/{% block title %}(.*){% endblock %}/i);
     }
-    if (title == null)
+    if (title === null)
     {
       title = filename;
     }else {
