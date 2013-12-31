@@ -1,0 +1,29 @@
+{
+	"files": [
+		{
+			"path": "test/blog",
+			"title": "test",
+			"is_file": false
+		},
+		{
+			"path": "test/blog/post1.html",
+			"title": "Post 1",
+			"is_file": true
+		},
+		{
+			"path": "test/blog/post2.swig",
+			"title": "Post 2",
+			"is_file": true
+		},
+		{
+			"path": "test/index.html",
+			"title": "Andrew Couch Solutions - Freiburg, Germany",
+			"is_file": true
+		},
+		{
+			"path": "test/robots.txt",
+			"title": "robots",
+			"is_file": true
+		}
+	]
+}
