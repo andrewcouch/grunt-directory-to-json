@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <jslint>
+	<file name="tasks/directory-to-json.js">
+		<issue line="46" char="69" reason="Missing semicolon." evidence="          sort_function = function(a,b){return a.modified-b.modified};" severity="W" />
+		<issue line="49" char="63" reason="Missing semicolon." evidence="          sort_function = function(a,b){return a.title-b.title};  " severity="W" />
+		<issue line="52" char="61" reason="Missing semicolon." evidence="          sort_function = function(a,b){return a.path-b.path};  " severity="W" />
+	</file>
 </jslint>

@@ -14,7 +14,11 @@ var fs = require('fs'),
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('directory_to_json', 'Generate a JSON file to reflect the directory structure', function() {
-    var rootDirectory = (this.data.root_directory !== undefined)? this.data.root_directory : '';
+    var rootDirectory = (this.data.root_directory !== undefined)? this.data.root_directory : '',
+      sort_by = (this.data.sort_by !== undefined) ? this.data.sort_by : false,
+      sort_dir = (this.data.sort_dir !== undefined) ? this.data.sort_dir : 'asc',      
+      include_nonfile = (this.data.include_nonfile !== undefined) ? this.data.include_nonfile : false;
+
 
     this.files.forEach(function(fileGroup) {
 
@@ -24,16 +28,35 @@ module.exports = function(grunt) {
 
       fileGroup.src.forEach(function(file){
         grunt.log.writeln('Processing File "' + file + '".');
-        var fileStructure = {},
-            filestats = fs.statSync(file);
-        fileStructure.path = rootDirectory + file;
-        fileStructure.title = getTitle(file);
-        fileStructure.is_file = grunt.file.isFile(file);
-        fileStructure.modified = filestats.mtime;
-        
-        directoryStructure.files.push(fileStructure);
+        if (include_nonfile || grunt.file.isFile(file) )
+        {
+          var fileStructure = {},
+              filestats = fs.statSync(file);
+          fileStructure.path = rootDirectory + file;
+          fileStructure.title = getTitle(file);
+          fileStructure.is_file = grunt.file.isFile(file);
+          fileStructure.modified = filestats.mtime;
+          
+          directoryStructure.files.push(fileStructure);
+        }
       });
+      var sort_function = null;
+      if (sort_by == 'date')
+      {
+          sort_function = function(a,b){return a.modified-b.modified};
+      } else if (sort_by =='title')
+      {
+          sort_function = function(a,b){return a.title-b.title};  
+      } else if (sort_by =='path')
+      {
+          sort_function = function(a,b){return a.path-b.path};  
+      }
 
+      directoryStructure.files.sort(sort_function);
+      if (sort_dir =='desc')
+      {
+        directoryStructure.files.reverse();
+      }
       grunt.file.write(fileGroup.dest, JSON.stringify(directoryStructure, null, '\t'));
 
       grunt.log.writeln('File "' + fileGroup.dest + '" created.');

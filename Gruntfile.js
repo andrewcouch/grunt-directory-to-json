@@ -11,7 +11,9 @@ module.exports = function (grunt) {
       development: {
         root_directory: '',
         dest: 'test/dest/dir.json',
-        src: ['test/**/*']
+        src: ['test/**/*'],
+        sort_by : 'date',
+        sort_dir : 'desc'
       }
     },
     jshint: {

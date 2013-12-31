@@ -1,10 +1,10 @@
 {
 	"files": [
 		{
-			"path": "test/blog",
-			"title": "test",
-			"is_file": false,
-			"modified": "2013-12-31T15:32:10.000Z"
+			"path": "test/blog/post2.swig",
+			"title": "Post 2",
+			"is_file": true,
+			"modified": "2013-12-31T15:33:50.000Z"
 		},
 		{
 			"path": "test/blog/post1.html",
@@ -13,20 +13,14 @@
 			"modified": "2013-12-31T15:33:50.000Z"
 		},
 		{
-			"path": "test/blog/post2.swig",
-			"title": "Post 2",
-			"is_file": true,
-			"modified": "2013-12-31T15:33:50.000Z"
-		},
-		{
-			"path": "test/index.html",
-			"title": "Andrew Couch Solutions - Freiburg, Germany",
+			"path": "test/robots.txt",
+			"title": "robots",
 			"is_file": true,
 			"modified": "2013-12-31T15:33:02.000Z"
 		},
 		{
-			"path": "test/robots.txt",
-			"title": "robots",
+			"path": "test/index.html",
+			"title": "Andrew Couch Solutions - Freiburg, Germany",
 			"is_file": true,
 			"modified": "2013-12-31T15:33:02.000Z"
 		}
